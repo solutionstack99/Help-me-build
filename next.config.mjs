@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+import "dotenv/config";
+
 const nextConfig = {
   env: {
-    DB_LOCAL_URI: "mongodb://127.0.0.1:27017",
+    DB_LOCAL_URI: process.env.DB_LOCAL_URI,
     DB_URI: "",
   },
 };

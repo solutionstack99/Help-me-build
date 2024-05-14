@@ -1,4 +1,4 @@
-export const rooms = [
+export const builders = [
   {
     name: "Charming Studio < 10 Miles to Wells' Beaches!",
     pricePerHour: 168,
