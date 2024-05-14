@@ -3,8 +3,14 @@ import Builder from "../models/builder";
 
 // Get all builders => /api/builders
 export const allBuilder = async (req: NextRequest) => {
+  const resPerPage: number = 8;
+
+  const builders = await Builder.find();
+
   return NextResponse.json({
-    message: "Hello, World!",
+    success: true,
+    resPerPage,
+    builders,
   });
 };
 
