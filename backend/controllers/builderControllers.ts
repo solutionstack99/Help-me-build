@@ -25,3 +25,24 @@ export const newBuilder = async (req: NextRequest) => {
     builder,
   });
 };
+
+export const getBuilderDetails = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  const builder = await Builder.findById(params.id);
+
+  if (!builder) {
+    return NextResponse.json(
+      {
+        message: "Builder not found",
+      },
+      { status: 404 }
+    );
+  }
+
+  return NextResponse.json({
+    success: true,
+    builder,
+  });
+};
