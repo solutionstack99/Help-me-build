@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Builder from "../models/builder";
+import build from "next/dist/build";
 
 // Get all builders => /api/builders
 export const allBuilder = async (req: NextRequest) => {
@@ -48,7 +49,7 @@ export const getBuilderDetails = async (
   });
 };
 
-// Update Builder => /api/builders/:id
+//
 export const updateBuilder = async (
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -68,5 +69,26 @@ export const updateBuilder = async (
   return NextResponse.json({
     success: true,
     builder,
+  });
+};
+
+// Delete Builder => /api/admin/builders/:id
+export const deleteBuilder = async (
+  req: NextRequest,
+  { params: { id } }: { params: { id: string } }
+) => {
+  let builder = await Builder.findById(id);
+
+  if (!builder) {
+    return NextResponse.json({ message: "Builder not found" }, { status: 404 });
+  }
+
+  // TODO: Delete imaage the related to the builder
+
+  await builder.deleteOne();
+
+  return NextResponse.json({
+    success: true,
+    message: "Builder is deleted",
   });
 };
