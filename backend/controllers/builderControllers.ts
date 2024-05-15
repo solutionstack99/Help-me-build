@@ -26,6 +26,7 @@ export const newBuilder = async (req: NextRequest) => {
   });
 };
 
+// Get Builder Details => /api/builders/:id
 export const getBuilderDetails = async (
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -40,6 +41,29 @@ export const getBuilderDetails = async (
       { status: 404 }
     );
   }
+
+  return NextResponse.json({
+    success: true,
+    builder,
+  });
+};
+
+// Update Builder => /api/builders/:id
+export const updateBuilder = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  let builder = await Builder.findById(params.id);
+  const body = await req.json();
+
+  if (!builder) {
+    return NextResponse.json({ message: "Builder not found" }, { status: 404 });
+  }
+
+  builder = await Builder.findByIdAndUpdate(params.id, body, {
+    // This will return the updated data
+    new: true,
+  });
 
   return NextResponse.json({
     success: true,

@@ -1,5 +1,8 @@
 import dbConnect from "@/backend/config/dbConnect";
-import { getBuilderDetails } from "@/backend/controllers/builderControllers";
+import {
+  getBuilderDetails,
+  updateBuilder,
+} from "@/backend/controllers/builderControllers";
 import { createEdgeRouter } from "next-connect";
 import { NextRequest } from "next/server";
 
