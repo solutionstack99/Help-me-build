@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "mongoose": "^8.3.4",
+    "mongoose": "^8.8.3",
     "next": "14.2.3",
     "next-connect": "^1.0.0",
     "react": "^18",
